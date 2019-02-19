@@ -1,0 +1,105 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+  <constant name="struts.multipart.saveDir" value="D:\"/>
+  <constant name="struts.multipart.maxSize" value="20971520"></constant>   
+   <!-- struts配置文件改动后，是否重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+     <package name="com.km.action" extends="struts-default,json-default" >
+         <interceptors>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="fileUpload">
+                    <param name="allowedTypes"></param>
+                    <param name="maximumSize">20971520</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <action name="SearchAction" class="com.km.action.MainSearch">
+        	<result name="success">jsp/kmSearchResults.jsp</result>
+        </action>
+        
+        <action name="DeleteAction" class="com.km.action.DeleteSearch">
+        	<result name="success">admin/result_list.jsp</result>
+        </action>
+        
+        
+        <action name="DoDeleteAction" class="com.km.action.DoDeleteAction">
+        	<result name="success">admin/delSearch.jsp</result>
+        </action>
+        
+      
+         <action name="FileIndexAction" class="com.km.action.FileIndexAction">
+        	<result name="success">admin/fileindex.jsp</result>
+        </action> 
+        
+        <action name="LoginAction" class="com.km.action.LoginAction">
+        	<result name="success">jsp/kmSearch.jsp</result>
+        	<result name="error">kmlogin.jsp</result>
+        </action> 
+        
+		<action name="GotoSearchByothe" class="com.km.action.GotoSearchByother">
+        	<result name="success">jsp/kmSearchByOther.jsp</result>
+        </action> 
+        <action name="GotoDetail" class="com.km.action.GotoDetail">
+        	<result name="success">jsp/kmDetail.jsp</result>
+        </action>
+        <action name="GotoSearch" class="com.km.action.GotoSearch">
+        	<result name="success">jsp/kmSearch.jsp</result>
+        </action>
+         <action name="GotoCreatKnowledge" class="com.km.action.GotoCreatKnowledge">
+        	<result name="success">jsp/kmCreateKnowledge.jsp</result>
+        </action>
+        <action name="GotoFileManager" class="com.km.action.GotoFileManager">
+        	<result name="success">jsp/kmFileManager.jsp</result>
+        </action>
+        <action name="GotoFileUpload" class="com.km.action.GotoFileUpload">
+        	<result name="success">jsp/kmFormFileUpload.jsp</result>
+        </action>
+        
+        <action name="UpLoadController" class="com.km.action.UpLoadController" method="upLoad">
+        	<result name="success">jsp/kmFileManager.jsp</result>
+        	<interceptor-ref name="myStack"></interceptor-ref>
+        </action>
+        <action name="AdvanceSearchAction" class="com.km.action.AdvanceSearchAction">
+        	<result name="success">jsp/kmSearchResults.jsp</result>
+        </action>
+         <action name="GotoCatallogueManager" class="com.km.action.GotoCatallogueManager">
+             <result name="success">jsp/kmCatallogueManager.jsp</result>
+         </action>
+
+         <action name="Gotokmgraph" class="com.km.action.Gotokmgraph">
+             <result name="success">jsp/kmgraph.jsp</result>
+         </action>
+         <action name="GotoUserManager" class="com.km.action.GotoUserManager">
+             <result name="success">jsp/kmUserManager.jsp</result>
+         </action>
+         <action name="GotoInfoManager" class="com.km.action.GotoInfoManager">
+             <result name="success">jsp/kmInfoManager.jsp</result>
+         </action>
+         <action name="GotoPerson" class="com.km.action.GotoPerson">
+         <result name="success">jsp/kmPerson.jsp</result>
+         </action>
+         <action name="GotoCheckList" class="com.km.action.GotoCheckList">
+             <result name="success">jsp/kmCheckList.jsp</result>
+         </action>
+         <action name="GotoDiscoverError" class="com.km.action.GotoDiscoverError">
+             <result name="success">jsp/kmDiscoverError.jsp</result>
+         </action>
+         <action name="GotoAdduser" class="com.km.action.GotoAdduser">
+             <result name="success">jsp/kmAdduser.jsp</result>
+         </action>
+
+         <action name="SaveUser" class="com.km.action.SaveUser">
+             <result name="a" type="json"></result>
+         </action>
+    </package>
+
+    
+    
+  
+    
+</struts>

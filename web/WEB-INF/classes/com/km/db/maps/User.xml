@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t_user">
+	<typeAlias alias="user" type="com.km.db.User" />
+	<typeAlias alias="dept" type="com.km.db.Dept" />
+	<typeAlias alias="role" type="com.km.db.Role" />
+
+ 	<select id="getByNameAndPwd" parameterClass="java.util.Map" resultClass="user">
+		select u.uID,u.uName ,u.uPassword ,u.uAge,u.uPhone ,u.uSex,u.uPhone,r.rName uRole,d.dName udept from t_user u join t_role r join t_dept d where u.uRole = r.rID and d.dID = u.udept and u.flag =1 and u.uID=#uID# and  u.uPassword=#uPassword#
+	</select>
+	<select id="selectAllUser"  resultClass="User">
+		select u.uID,u.uName ,u.uPassword ,u.uAge,u.uPhone ,u.uSex,u.uPhone,r.rName uRole,d.dName udept from t_user u join t_role r join t_dept d where u.uRole = r.rID and d.dID = u.udept and u.flag =1
+
+	</select>
+	<insert id="addUser" parameterClass="user" >
+		insert into t_user(uID,uName,uPassword,uAge,uPhone,uSex,uPhone,uRole,udept) values (#uID#,#uName#,#uPassword#,#uAge#,#uPhone#,#uSex#,#uPhone#,#uRole#,#udept#)
+	</insert>
+	<select id="selectDept" resultClass="com.km.db.Dept">
+			select *  from t_dept
+	</select>
+	<select id="selectRole" resultClass="com.km.db.Role">
+			select *  from t_role where  rName &lt;&gt;'超级管理员'
+	</select>
+</sqlMap>
+
